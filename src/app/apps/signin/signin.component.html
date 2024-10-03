@@ -1,0 +1,41 @@
+<div class="app-window">
+  <div class="body">
+    <mat-card id="signin-form" class="signin-form">
+      <!-- Header -->
+      <mat-card-header>
+        <div mat-card-avatar class="logo-image"></div>
+        <mat-card-title>Angular Study</mat-card-title>
+        <mat-card-subtitle>Authentication</mat-card-subtitle>
+      </mat-card-header>
+
+      <br />
+
+      <!-- Content -->
+      <mat-card-content>
+        <!-- Username -->
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Username"
+            [value]="username"
+          />
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="text" matInput placeholder="Password" />
+        </mat-form-field>
+      </mat-card-content>
+
+      <!-- Actions -->
+      <mat-card-actions>
+        <button mat-flat-button>SIGN-IN</button>
+
+        <button mat-flat-button (click)="goToHome()">HOME</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
