@@ -14,4 +14,3 @@ import { TablePagesComponent } from '../../components/table-pages/table-pages.co
 export class HomeComponent {
   parentPageList: number[] = new Array(10);
 }
-
