@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,11 +23,9 @@ import { Router } from '@angular/router';
 export class SigninComponent {
   @Input() username: string = 'aungminoo';
 
-  private route = inject(Router);
-
-  constructor() {}
+  constructor(private route: Router) {}
 
   goToHome() {
-    this.route.navigate(['home'], { replaceUrl: true });
+    this.route.navigate(['home'], { replaceUrl: false });
   }
 }

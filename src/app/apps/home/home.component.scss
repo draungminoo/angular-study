@@ -6,10 +6,19 @@
 
   .header {
     padding: 16px;
+    display: flex;
 
     .title {
       font-size: x-large;
       font-weight: bold;
+    }
+
+    .first-page {
+      margin: 0px 16px;
+    }
+
+    .last-page {
+      margin: 0px 16px;
     }
   }
 
@@ -25,12 +34,18 @@
       flex-direction: column;
       overflow: auto;
 
-      p {
+      .user {
         margin: 4px 0px;
+        padding: 8px;
+        background: lightblue;
       }
     }
 
-    app-table-pages {
+    .table-footer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       background: lightyellow;
     }
   }

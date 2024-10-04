@@ -1,124 +1,26 @@
 <div class="app-window">
   <div class="header">
-    <div class="title">Users list</div>
+    <div class="title">Users list (Page No: {{ activePage }})</div>
+
+    <div class="first-page">First Page: {{ isFirstPage ? 'Yes' : 'No' }}</div>
+    <div class="last-page">Last Page: {{ isLastPage ? 'Yes' : 'No' }}</div>
   </div>
 
   <div class="body">
     <div class="content-container">
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
-      <p>This is content.</p>
+      @for (user of usersList; track $index) {
+        <div class="user">{{ $index + 1 }}. {{ user.name }}</div>
+      }
     </div>
 
-    <app-table-pages
-      [activePage]="2"
-      [pageList]="parentPageList"
-    ></app-table-pages>
+    <div class="table-footer">
+      <app-table-pages
+        [activePage]="activePage"
+        [pageList]="parentPageList"
+        (onPageChanged)="pageChanged($event)"
+      ></app-table-pages>
+
+      <app-table-first-last></app-table-first-last>
+    </div>
   </div>
 </div>
