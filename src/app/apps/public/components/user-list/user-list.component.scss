@@ -1,3 +1,9 @@
+:host(.app-host) {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
 .app-window {
   flex: 1;
   display: flex;

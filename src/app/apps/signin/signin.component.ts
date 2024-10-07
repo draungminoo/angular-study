@@ -25,7 +25,11 @@ export class SigninComponent {
 
   constructor(private route: Router) {}
 
-  goToHome() {
-    this.route.navigate(['home'], { replaceUrl: false });
+  goToPrivateApp() {
+    this.route.navigate(['app/private'], { replaceUrl: false });
+  }
+
+  goToPublicApp() {
+    this.route.navigate(['app/public'], { replaceUrl: false });
   }
 }

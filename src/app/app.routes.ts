@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { SigninComponent } from './apps/signin/signin.component';
 
 export const routes: Routes = [
   {
@@ -9,13 +8,19 @@ export const routes: Routes = [
   },
   {
     path: 'signin',
-    pathMatch: 'full',
-    component: SigninComponent,
+    loadComponent: () =>
+      import('./apps/signin/signin.component').then((c) => c.SigninComponent),
   },
   {
-    path: 'home',
-    pathMatch: 'full',
+    path: 'app',
+    loadChildren: () =>
+      import('./apps/app-frame/app-frame.module').then((m) => m.AppFrameModule),
+  },
+  {
+    path: '**',
     loadComponent: () =>
-      import('./apps/home/home.component').then((c) => c.HomeComponent),
+      import('./components/not-found/not-found.component').then(
+        (c) => c.NotFoundComponent,
+      ),
   },
 ];
