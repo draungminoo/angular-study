@@ -1,14 +1,8 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  output,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { DialogService } from '../dialog/dialog.service';
 
 @Component({
   selector: 'app-table-pages',
@@ -19,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
     // Module
     MatButtonModule,
     MatIconModule,
+    MatTooltipModule,
   ],
 })
 export class TablePagesComponent {

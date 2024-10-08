@@ -6,6 +6,7 @@ html {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 body {
@@ -27,4 +28,14 @@ app-root {
     display: flex;
     overflow: hidden;
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.spacer {
+  // flex-spacer
+  // flex-growth: 1;
+  flex: 1;
 }

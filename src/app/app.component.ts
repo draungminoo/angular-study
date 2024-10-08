@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { arrayStudy } from './study/array.study';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,8 @@ import { RouterOutlet } from '@angular/router';
     RouterOutlet,
   ],
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    arrayStudy();
+  }
+}

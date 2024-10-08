@@ -3,17 +3,105 @@
     <div class="title">Users list (Page No: {{ activePage }})</div>
 
     <div class="first-page">First Page: {{ isFirstPage ? 'Yes' : 'No' }}</div>
-    <div class="last-page">Last Page: {{ isLastPage ? 'Yes' : 'No' }}</div>
+    <div
+      class="last-page"
+      matTooltip="Last Page"
+      matTooltipPosition="after"
+      matTooltipShowDelay="3000"
+      matTooltipHideDelay="3000"
+    >
+      Last Page: {{ isLastPage ? 'Yes' : 'No' }}
+    </div>
   </div>
 
   <div class="body">
+    <!-- Filter Input -->
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Filter"
+        [formControl]="filterFormControl"
+      />
+    </mat-form-field>
+
+    <!-- Table Container -->
     <div class="content-container">
-      @for (user of usersList; track $index) {
-        <div class="user">{{ $index + 1 }}. {{ user.name }}</div>
-      }
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- Columns -->
+        <!-- No -->
+        <ng-container matColumnDef="no" sticky="true">
+          <th mat-header-cell *matHeaderCellDef>No</th>
+          <td mat-cell *matCellDef="let data; let i = index">{{ i + 1 }}</td>
+        </ng-container>
+
+        <!-- Name -->
+        <ng-container matColumnDef="name" sticky="true">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let data; let i = index">
+            {{ data.name }}
+          </td>
+        </ng-container>
+
+        <!-- Age -->
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
+          <td mat-cell *matCellDef="let data; let i = index">
+            {{ data.age }}
+          </td>
+        </ng-container>
+
+        <!-- Gender -->
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+          <td mat-cell *matCellDef="let data; let i = index">
+            {{ data.gender }}
+          </td>
+        </ng-container>
+
+        <!-- Race -->
+        <ng-container matColumnDef="race">
+          <th mat-header-cell *matHeaderCellDef>Race</th>
+          <td mat-cell *matCellDef="let data; let i = index">-</td>
+        </ng-container>
+
+        <!-- Religion -->
+        <ng-container matColumnDef="religion">
+          <th mat-header-cell *matHeaderCellDef>Religion</th>
+          <td mat-cell *matCellDef="let data; let i = index">-</td>
+        </ng-container>
+
+        <!-- Occupation -->
+        <ng-container matColumnDef="occupation">
+          <th mat-header-cell *matHeaderCellDef>Occupation</th>
+          <td mat-cell *matCellDef="let data; let i = index">-</td>
+        </ng-container>
+
+        <!-- Menu -->
+        <ng-container matColumnDef="menu" stickyEnd="true">
+          <th mat-header-cell *matHeaderCellDef>Menu</th>
+          <td mat-cell *matCellDef="let data; let i = index">
+            <button mat-icon-button>
+              <mat-icon>menu</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Rows -->
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr mat-row *matRowDef="let data; columns: displayedColumns"></tr>
+      </table>
     </div>
 
     <div class="table-footer">
+      <mat-paginator [pageSizeOptions]="[20, 50, 100]"></mat-paginator>
+
+      <div class="spacer"></div>
+
       <app-table-pages
         [activePage]="activePage"
         [pageList]="parentPageList"
