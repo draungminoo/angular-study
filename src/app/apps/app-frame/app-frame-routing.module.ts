@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppFrameComponent } from './app-frame.component';
-import { appFrameGuard } from './guard/app-frame.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +14,6 @@ const routes: Routes = [
       },
       {
         path: 'private',
-        // canActivate: [appFrameGuard],
         loadChildren: () =>
           import('../private/private.module').then((m) => m.PrivateModule),
       },

@@ -11,8 +11,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { debounceTime } from 'rxjs';
 import { TableFirstLastComponent } from '../../../../components/table-first-last/table-first-last.component';
 import { TablePagesComponent } from '../../../../components/table-pages/table-pages.component';
+import { AppDrawerService } from '../../../app-frame/components/app-drawer/app-drawer.service';
+import { UserListFilterComponent } from './components/user-list-filter/user-list-filter.component';
 import { UserListService } from './user-list.service';
 import { UserType } from './user-list.type';
+import { RxjsComponentService } from './components/rxjs-component/rxjs-component.service';
 
 @Component({
   selector: 'app-user-list',
@@ -56,10 +59,11 @@ export class UserListComponent implements AfterViewInit {
     'age',
     'gender',
     'race',
-    'religion',
     'occupation',
     'menu',
   ];
+  displayedColumns2: string[] = ['religion', 'address'];
+  displayedColumns3: string[] = ['religion', 'address'];
 
   isFirstPage: boolean = true;
   isLastPage: boolean = false;
@@ -68,7 +72,11 @@ export class UserListComponent implements AfterViewInit {
   filteredUserList: UserType[] = [];
   dataSource = new MatTableDataSource<UserType>();
 
-  constructor(private homeService: UserListService) {
+  constructor(
+    private homeService: UserListService,
+    private appDrawerService: AppDrawerService,
+    private rxjsComponentService: RxjsComponentService,
+  ) {
     this.homeService
       .getUserFromServer()
       .then((users) => {
@@ -85,11 +93,18 @@ export class UserListComponent implements AfterViewInit {
         this.filterUserList(name);
       },
     });
+
+    // document event
+    window.onclick = (e) => {
+      this.rxjsComponentService.setSomeSub(Math.random());
+    };
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.tablePaginator;
+
+    this.openPortal();
   }
 
   pageChanged(pageNo: number) {
@@ -112,5 +127,21 @@ export class UserListComponent implements AfterViewInit {
     );
 
     this.dataSource.data = this.filteredUserList;
+  }
+
+  openDrawer() {
+    this.appDrawerService.openDrawer();
+  }
+
+  openPortal() {
+    this.appDrawerService.setDrawerWidth('400px');
+    this.appDrawerService.setPortalCompoent(UserListFilterComponent);
+    this.appDrawerService.openDrawer();
+  }
+
+  ngOnDestroy() {
+    this.appDrawerService.closeDrawer();
+    this.appDrawerService.setPortalCompoent(null);
+    this.appDrawerService.setDrawerWidth();
   }
 }
