@@ -7,15 +7,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { debounceTime } from 'rxjs';
 import { TableFirstLastComponent } from '../../../../components/table-first-last/table-first-last.component';
 import { TablePagesComponent } from '../../../../components/table-pages/table-pages.component';
 import { AppDrawerService } from '../../../app-frame/components/app-drawer/app-drawer.service';
+import { RxjsComponentService } from './components/rxjs-component/rxjs-component.service';
 import { UserListFilterComponent } from './components/user-list-filter/user-list-filter.component';
 import { UserListService } from './user-list.service';
 import { UserType } from './user-list.type';
-import { RxjsComponentService } from './components/rxjs-component/rxjs-component.service';
+import { ChartComponentComponent } from './components/chart-component/chart-component.component';
 
 @Component({
   selector: 'app-user-list',
@@ -34,12 +36,14 @@ import { RxjsComponentService } from './components/rxjs-component/rxjs-component
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatTabsModule,
     MatTooltipModule,
     ReactiveFormsModule,
 
     // Components
-    TablePagesComponent,
+    ChartComponentComponent,
     TableFirstLastComponent,
+    TablePagesComponent,
   ],
 })
 export class UserListComponent implements AfterViewInit {
@@ -103,8 +107,6 @@ export class UserListComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.tablePaginator;
-
-    this.openPortal();
   }
 
   pageChanged(pageNo: number) {

@@ -1,0 +1,14 @@
+@use '@angular/material' as mat;
+@use './resources/assets/green-theme.scss' as g;
+@use './resources/assets/yellow-theme.scss' as y;
+
+// mixin
+
+body {
+  @include mat.all-component-themes(y.$light-theme);
+}
+
+body[mode='dark'] {
+  background: black;
+  @include mat.all-component-colors(y.$dark-theme);
+}
