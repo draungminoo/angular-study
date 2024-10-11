@@ -1,0 +1,12 @@
+@use './app-frame.theme.scss' as app-frame;
+@use './mat-component-variant.theme.scss' as mat-theme;
+@use '../../../../app/apps/public/components/user-list/components/chart-component/mixin/chat-component.mixin.scss'
+  as my-component;
+
+@mixin apply-all-mixins($theme) {
+  @include mat-theme.mat-component-variants($theme);
+  @include app-frame.apply-app-frame-theme($theme);
+
+  // my component mixin
+  @include my-component.my-component-mixin($theme);
+}

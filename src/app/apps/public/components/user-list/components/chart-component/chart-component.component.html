@@ -2,10 +2,70 @@
   <div class="header">
     <div class="title">CHIPS</div>
 
-    <button mat-flat-button (click)="changeToDarkMode()">DARK MODE</button>
+    <button mat-flat-button (click)="changeTheme(themeNamesEnum.GREEN)">
+      GREEN THEME
+    </button>
+    <button mat-flat-button (click)="changeTheme(themeNamesEnum.YELLOW)">
+      YELLOW THEME
+    </button>
+    <button mat-flat-button (click)="toggleMode()">MODE</button>
   </div>
 
   <div class="body">
+    <p>Button Variants</p>
+    <button mat-flat-button class="primary-button">PRIMARY</button>
+    <button mat-flat-button class="secondary-button">SECONDARY</button>
+    <button mat-flat-button class="tertiary-button">TERTIARY</button>
+    <button mat-flat-button class="error-button">ERROR</button>
+
+    <br />
+    <br />
+
+    <mat-form-field appearance="outline" class="primary-form-field">
+      <mat-label>Primary</mat-label>
+      <input type="text" matInput placeholder="Primary" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="secondary-form-field">
+      <mat-label>Secondary</mat-label>
+      <input type="text" matInput placeholder="Secondary" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="tertiary-form-field">
+      <mat-label>Tertiary</mat-label>
+      <input type="text" matInput placeholder="Tertiary" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="error-form-field">
+      <mat-label>Tertiary</mat-label>
+      <input type="text" matInput placeholder="Tertiary" />
+    </mat-form-field>
+
+    <br />
+    <br />
+
+    <mat-icon class="primary-icon">person</mat-icon>
+    <mat-icon class="secondary-icon">person</mat-icon>
+    <mat-icon class="tertiary-icon">person</mat-icon>
+    <mat-icon class="error-icon">person</mat-icon>
+
+    <!-- My Component -->
+    <div
+      class="my-component-class"
+      style="
+        width: 250px;
+        height: 250px;
+        border: 1px solid gray;
+        margin: 16px;
+        padding: 16px;
+        "
+    >
+      My Component Theme
+    </div>
+
+    <br />
+    <br />
+
     <!-- Chip Set -->
     <p>Chip Set</p>
     <mat-chip-set>
