@@ -5,6 +5,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
@@ -18,12 +25,21 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    ReactiveFormsModule,
   ],
 })
 export class SigninComponent {
   @Input() username: string = 'aungminoo';
 
-  constructor(private route: Router) {}
+  signinFormGroup = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
+
+  constructor(
+    private route: Router,
+    private authService: AuthService,
+  ) {}
 
   goToPrivateApp() {
     this.route.navigate(['app/private'], { replaceUrl: false });
@@ -31,5 +47,14 @@ export class SigninComponent {
 
   goToPublicApp() {
     this.route.navigate(['app/public'], { replaceUrl: false });
+  }
+
+  signinUser() {
+    const valid = this.signinFormGroup.valid;
+    if (valid) {
+      const value = this.signinFormGroup.value;
+
+      this.authService.updateUser(value.password ?? '', value.username ?? '');
+    }
   }
 }
